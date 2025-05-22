@@ -1,0 +1,18 @@
+---
+- name: Deploy Backend
+  hosts: all
+  tasks:
+    - name: apply configmap
+      shell: kubectl apply -f /home/arnab/SpeMajorProject/JunkTrade-master-master/mysql-configmap.yaml
+    - name: apply secrets
+      shell: kubectl apply -f /home/arnab/SpeMajorProject/JunkTrade-master-master/mysql-secrets.yaml
+    - name: apply mysql
+      shell: kubectl apply -f /home/arnab/SpeMajorProject/JunkTrade-master-master/mysql-deployment.yaml
+    - name: apply app
+      shell: kubectl apply -f /home/arnab/SpeMajorProject/JunkTrade-master-master/app-deployment.yaml
+- name: Deploy Frontend
+  hosts: all
+  tasks:
+    - name: apply deployment
+      shell: kubectl apply -f /home/arnab/SpeMajorProject/junktradefrontend-master/deployment.yaml
+    
